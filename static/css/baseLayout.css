@@ -1,0 +1,92 @@
+/*Gestion tâches*/
+.title{
+    color: wheat;
+    margin: auto;
+}
+
+.row{
+    border: 1px solid black;
+    border-radius: 25px;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.row:hover{
+    background-color: wheat;
+}
+
+/*Création contact*/
+
+form{
+    padding: 1% 5%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    background-color: wheat;
+    border-bottom-right-radius: 15%;
+    border-top-left-radius: 15%;
+}
+
+button{
+    transition: 0.3s;
+    margin: 2%;
+}
+
+button:hover{
+    background-color: #212529;
+    color: white;
+    transition: 0.3s;
+}
+
+input{
+    width: 100%;
+}
+
+textarea{
+    width: 100%;
+}
+
+.contact-container{
+    background-color: wheat;
+    width: 25%;
+    border-radius: 1em;
+    padding: 1em;
+    text-align: center;
+    margin: auto;
+}
+
+.contact-link-box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-link-box > a{
+    background-color: aquamarine;
+    text-decoration: none;
+    text-align: center;
+    color: #212529;
+    width: 15%;
+    margin: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    transition: 0.4s;
+}
+
+.contact-link-box > a:hover{
+    color: white;
+    background-color: blueviolet;
+    transition: 0.4s;
+}
+
+.contact-link{
+    font-weight: 500;
+    font-size: 1.5vw;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0.2em;
+}

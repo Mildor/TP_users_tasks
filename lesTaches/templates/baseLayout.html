@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %}
+    {% endblock %}
+    </title>
+    {% block metas %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock %}
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'node_modules/bootstrap/dist/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/baseLayout.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+        <h1 class="title">{% block nav %}Gestion des tâches{% endblock %}</h1>
+    </nav>
+    <main role="main" class="container top-pushed">
+        <div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+    {% block js %}
+    <script src="{% static 'node_modules/jquery-slim/dist/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'node_modules/@popperjs/core/dist/umd/popper.min.js' %}"></script>
+    {% endblock %}
+</body>
+</html>
