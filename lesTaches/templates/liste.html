@@ -8,21 +8,37 @@
     {% block content %}
     <h1>Liste des tâches</h1>
     {% for tache in taches %}
-        <a href="/lesTaches/detail/{{ tache.name }}/ ">
-            <div class="row">
-                    <div class="col">{{ tache.name }}</div>
-                    <div class="col">{{ tache.creation_date }}</div>
-                    <div class="col">{{ tache.colored_due_date }}</div>
-                    <div class="col">
-                        {% if tache.closed %}
-                        <i class="fas fa-lock"></i>
-                        {% else %}
-                        <i class="fas fa-lock-open"></i>
-                        {% endif%}
-                    </div>
-
-
+    <div class="row">
+        <a class="col" href="/lesTaches/detail/{{ tache.id }}/ ">{{ tache.name }}</a>
+        <a class="col" href="/lesTaches/detail/{{ tache.id }}/ ">{{ tache.creation_date }}</a>
+        <a class="col" href="/lesTaches/detail/{{ tache.id }}/ ">{{ tache.colored_due_date }}</a>
+        {% if tache.closed %}
+            <a class="col" href="/lesTaches/detail/{{ tache.id }}/ "><i class="fas fa-lock"></i></a>
+        {% else %}
+            <a class="col" href="/lesTaches/detail/{{ tache.id }}/ "><i class="fas fa-lock-open"></i></a>
+        {% endif%}
+        <a class="col" href="/lesTaches/EditTask/{{tache.id}}/"><button type="button" class="btn btn-secondary">Modifier</button></a>
+        <!-- Button trigger modal -->
+        <a href="#" class="col"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{tache.id}}">Supprimer</button></a>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{tache.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sur de vouloir supprimer {{tache.name}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="/lesTaches/DeleteTask/{{tache.id}}/"><button type="button" class="btn btn-danger">Supprimer</button></a>
+              </div>
             </div>
-        </a>
+          </div>
+        </div>
+    </div>
     {% endfor %}
+        <a href="/lesTaches/addTask/"><button type="button" class="btn btn-primary">Ajouter</button></a>
     {% endblock %}

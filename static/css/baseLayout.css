@@ -24,7 +24,7 @@ a:active {
   text-decoration: none;
 }
 
-a .row{
+.row{
     border: 1px solid black;
     border-radius: 25px;
     margin: 1%;
@@ -33,7 +33,7 @@ a .row{
     text-align: center;
 }
 
-a .row:hover{
+.row:hover{
     background-color: wheat;
 }
 
