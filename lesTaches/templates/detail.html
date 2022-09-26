@@ -1,22 +1,23 @@
 {% extends "baseLayout.html" %}
-
-{% block title %} Liste des tâches {% endblock %}
-{% block content %}
-    <h3>Tâches en cours ou terminées</h3>
-    <ul>
-    {% for tache in taches %}
-        <li>
-            <h3>
-                {% if tache.closed %}
-                    <span class="closed">{{ tache.name }}</span>
-                {% else %}
-                    {{ tache.name }}
-                {% endif %}
-            </h3>
-            <h4>{{ tache.description }}</h4>
-            <p>Date de rendu : {{ tache.colored_due_date }}</p>
-            <p>Date de début : {{ tache.schedule_date }}</p>
-        </li>
-    {% endfor %}
-    </ul>
-{% endblock %}
+{% load static %}
+    {% block title %}Les tâches{% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
+    {% endblock %}
+    {% block content %}
+    <h1>Détail de la tâche</h1>
+        <h4>Nom : </h4>{{ tache.name }}
+        <div class="col"><h4>Déscription : </h4>{{ tache.description }}</div>
+        <div class="col"><h4>Crée le  : </h4>{{ tache.creation_date }}</div>
+        <div class="col"><h4>Prévue pour le : </h4>{{ tache.due_date }}</div>
+        <div class="col"><h4>Après cette date vous êtes en retard : </h4>{{ tache.schedule_date }}</div>
+        <div class="col"><h4>Attribué à : </h4><h5>{{ tache.owner }}</h5></div>
+        <div class="col">
+            {% if tache.closed %}
+            <i class="fas fa-lock"></i>
+            {% else %}
+            <i class="fas fa-lock-open"></i>
+            {% endif%}
+    </div>
+    {% endblock %}

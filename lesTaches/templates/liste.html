@@ -8,17 +8,21 @@
     {% block content %}
     <h1>Liste des tâches</h1>
     {% for tache in taches %}
-    <div class="row">
-        <div class="col">{{ tache.name }}</div>
-        <div class="col">{{ tache.creation_date }}</div>
-        <div class="col">{{ tache.colored_due_date }}</div>
-        <div class="col">
-            {% if tache.closed %}
-            <i class="fas fa-lock"></i>
-            {% else %}
-            <i class="fas fa-lock-open"></i>
-            {% endif%}
-        </div>
-    </div>
+        <a href="/lesTaches/detail/{{ tache.name }}/ ">
+            <div class="row">
+                    <div class="col">{{ tache.name }}</div>
+                    <div class="col">{{ tache.creation_date }}</div>
+                    <div class="col">{{ tache.colored_due_date }}</div>
+                    <div class="col">
+                        {% if tache.closed %}
+                        <i class="fas fa-lock"></i>
+                        {% else %}
+                        <i class="fas fa-lock-open"></i>
+                        {% endif%}
+                    </div>
+
+
+            </div>
+        </a>
     {% endfor %}
     {% endblock %}
