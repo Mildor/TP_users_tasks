@@ -1,0 +1,22 @@
+{% extends "baseLayout.html" %}
+{% load static %}
+    {% block title %}Que souhaitez vous faire ?{% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
+    {% endblock %}
+    {% block content %}
+    <h1 id="h1-nav">Que souhaitez vous faire ?</h1>
+    <div class="container_links">
+        <div class="link_to">
+        <a href="users/"><h2>Voir le(s) tâche(s) d'un utilisateur</h2></a>
+        </div>
+        <div class="link_to">
+            <a href="listing/"><h2>Voir toute(s) le(s) tâche(s)</h2></a>
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}

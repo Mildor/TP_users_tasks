@@ -8,10 +8,23 @@ from django.contrib import messages
 
 
 # Create your views here.
+def task_nav(request):
+    return render(request, template_name='nav_task.html')
+
 
 def task_listing(request):
     objects = Task.objects.all().order_by("due_date")
     return render(request, template_name="liste.html", context={'taches': objects})
+
+
+def user_choice(request):
+    objects = User.objects.all()
+    return render(request, template_name='all_users.html', context={'users': objects})
+
+
+def task_listing_by_user(request, param=''):
+    objects = Task.objects.all().filter(owner=param)
+    return render(request, template_name='user_task.html', context={'tasks': objects})
 
 
 def task_details(request, param=''):

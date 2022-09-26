@@ -1,0 +1,15 @@
+{% extends "baseLayout.html" %}
+{% load static %}
+    {% block title %}Les tâches{% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
+    {% endblock %}
+    {% block content %}
+    <h1>Choisissez un utilisateurs afin de voir ses tâches</h1>
+    {% for user in users %}
+        <div class="row">
+            <a href="/lesTaches/user_task/{{user.id}}/" class="col">{{user.email}}</a>
+        </div>
+    {% endfor %}
+    {% endblock %}

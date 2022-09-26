@@ -1,0 +1,44 @@
+{% extends "baseLayout.html" %}
+{% load static %}
+    {% block title %}Les tâches{% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
+    {% endblock %}
+    {% block content %}
+    <h1>Liste des tâches</h1>
+    {% for task in tasks %}
+    <div class="row">
+        <a class="col" href="/lesTaches/detail/{{ task.id }}/ ">{{ task.name }}</a>
+        <a class="col" href="/lesTaches/detail/{{ task.id }}/ ">{{ task.creation_date }}</a>
+        <a class="col" href="/lesTaches/detail/{{ task.id }}/ ">{{ task.colored_due_date }}</a>
+        {% if task.closed %}
+            <a class="col" href="/lesTaches/detail/{{ task.id }}/ "><i class="fas fa-lock"></i></a>
+        {% else %}
+            <a class="col" href="/lesTaches/detail/{{ task.id }}/ "><i class="fas fa-lock-open"></i></a>
+        {% endif%}
+        <a class="col" href="/lesTaches/EditTask/{{task.id}}/"><button type="button" class="btn btn-secondary">Modifier</button></a>
+        <!-- Button trigger modal -->
+        <a href="#" class="col"><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{task.id}}">Supprimer</button></a>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{task.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sur de vouloir supprimer {{task.name}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a href="/lesTaches/DeleteTask/{{task.id}}/"><button type="button" class="btn btn-danger">Supprimer</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+        <a href="/lesTaches/addTask/"><button type="button" class="btn btn-primary">Ajouter</button></a>
+    {% endblock %}

@@ -12,7 +12,11 @@
         <div class="col"><h4>Crée le  : </h4>{{ tache.creation_date }}</div>
         <div class="col"><h4>Prévue pour le : </h4>{{ tache.colored_due_date }}</div>
         <div class="col"><h4>Après cette date vous êtes en retard : </h4>{{ tache.schedule_date }}</div>
+        {% if tache.owner is None %}
+        <div class="col"><h4>Aucun utilisateur attribué</h4></div>
+        {% else %}
         <div class="col"><h4>Attribué à : </h4><h5>{{ tache.owner }}</h5></div>
+        {% endif %}
         <div class="col">
             {% if tache.closed %}
             <i class="fas fa-lock"></i>
