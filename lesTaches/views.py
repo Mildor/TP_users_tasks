@@ -23,8 +23,9 @@ def user_choice(request):
 
 
 def task_listing_by_user(request, param=''):
+    user = User.objects.get(id=param)
     objects = Task.objects.all().filter(owner=param)
-    return render(request, template_name='user_task.html', context={'tasks': objects})
+    return render(request, template_name='user_task.html', context={'tasks': objects, 'user':user})
 
 
 def task_details(request, param=''):
@@ -39,14 +40,15 @@ class TaskForm(ModelForm):
         self.fields["description"].label = "description"
         self.fields["due_date"].label = "due_date"
         self.fields["schedule_date"].label = "schedule_date"
+        self.fields["closed"].label = "closed"
         owner = forms.MultipleChoiceField(widget=forms.SelectMultiple, choices=User.objects.all(), required=False)
 
     class Meta:
         model = Task
-        fields = ("name", "description", "due_date", "schedule_date", "owner")
+        fields = ("name", "description", "due_date", "schedule_date", "owner", "closed")
         widgets = {
             "due_date": DateInput(),
-            "schedule_date": DateInput(),
+            "schedule_date": DateInput()
         }
 
 

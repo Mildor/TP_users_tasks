@@ -38,6 +38,23 @@ a:active {
     background-color: white;
 }
 
+.row_user{
+  width: 25%;
+  border: 1px solid black;
+  padding: 1%;
+  border-radius: 25px;
+  margin: auto;
+  margin-top:2%;
+  text-align: center;
+  background-color: white;
+  transition: background-color 1s, transform 1s;
+}
+
+.row_user:hover{
+  background-color: lightgrey;
+  transform: scale(1.5) translate(0%, 10%);
+}
+
 .row:hover{
     background-color: wheat;
 }

@@ -1,12 +1,13 @@
 {% extends "baseLayout.html" %}
 {% load static %}
-    {% block title %}Les tâches{% endblock %}
+    {% block title %}Le(s) tâche(s) de {{user.email}}{% endblock %}
     {% block styles %}
         {{ block.super }}
         <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
     {% endblock %}
     {% block content %}
-    <h1>Liste des tâches</h1>
+{% if tasks %}
+<h1>Liste des tâches de {{user.email}}</h1>
     {% for task in tasks %}
     <div class="row">
         <a class="col" href="/lesTaches/detail/{{ task.id }}/ ">{{ task.name }}</a>
@@ -40,5 +41,8 @@
         </div>
     </div>
     {% endfor %}
+{% else %}
+    <h1>Aucunes tâches est attribuées à {{user.email}}</h1>
+{% endif %}
         <a href="/lesTaches/addTask/"><button type="button" class="btn btn-primary">Ajouter</button></a>
     {% endblock %}
