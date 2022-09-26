@@ -3,6 +3,8 @@
     "@fortawesome/fontawesome-free": "^6.2.0",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.1",
-    "jquery-slim": "^3.0.0"
+    "jquery-slim": "^3.0.0",
+    "package.json": "^2.0.1",
+    "static": "^2.0.0"
   }
 }

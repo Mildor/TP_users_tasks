@@ -1,9 +1,7 @@
-from django.forms import ModelForm, DateInput, EmailInput
-from django.http import HttpResponse
-from django.shortcuts import render, redirect, get_object_or_404
+from django.forms import ModelForm, DateInput
+from django.shortcuts import render, redirect
 from lesTaches.models import Task, User
 from django import forms
-from django.urls import reverse
 from django.contrib import messages
 
 
