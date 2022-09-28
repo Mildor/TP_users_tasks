@@ -4,7 +4,7 @@ html, body{
 
 /*Gestion tâches*/
 .title{
-    color: wheat;
+    color: lightgrey;
     margin: auto;
 }
 
@@ -29,13 +29,20 @@ a:active {
 }
 
 .row{
-    border: 1px solid black;
+    border: thick double black;
     border-radius: 25px;
     margin: 1%;
     display: flex;
     align-items: center;
     text-align: center;
     background-color: white;
+}
+
+.row_entete{
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    text-align: center;
 }
 
 .row_user{

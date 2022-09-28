@@ -8,6 +8,26 @@
     {% block content %}
 {% if tasks %}
 <h1>Liste des tâches de {{user.email}}</h1>
+    <div class="row_entete">
+        <div class="col">
+            <h4>Nom</h4>
+        </div>
+        <div class="col">
+            <h4>Date de création</h4>
+        </div>
+        <div class="col">
+            <h4>Date d'échéance</h4>
+        </div>
+        <div class="col">
+            <h4>Tâche fermée</h4>
+        </div>
+        <div class="col">
+            <h4>Modifier</h4>
+        </div>
+        <div class="col">
+            <h4>Supprimer</h4>
+        </div>
+    </div>
     {% for task in tasks %}
     <div class="row">
         <a class="col" href="/lesTaches/detail/{{ task.id }}/ ">{{ task.name }}</a>
