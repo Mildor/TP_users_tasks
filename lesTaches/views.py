@@ -1,5 +1,6 @@
 from django.forms import ModelForm, DateInput
 from django.shortcuts import render, redirect
+from lesTaches.forms import TaskForm, UserForm
 from lesTaches.models import Task, User
 from django import forms
 from django.contrib import messages
@@ -23,31 +24,12 @@ def user_choice(request):
 def task_listing_by_user(request, param=''):
     user = User.objects.get(id=param)
     objects = Task.objects.all().filter(owner=param)
-    return render(request, template_name='user_task.html', context={'tasks': objects, 'user':user})
+    return render(request, template_name='user_task.html', context={'tasks': objects, 'user': user})
 
 
 def task_details(request, param=''):
     objects = Task.objects.get(id=param)
     return render(request, template_name="detail.html", context={'tache': objects})
-
-
-class TaskForm(ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields["name"].label = "Nom"
-        self.fields["description"].label = "description"
-        self.fields["due_date"].label = "due_date"
-        self.fields["schedule_date"].label = "schedule_date"
-        self.fields["closed"].label = "closed"
-        owner = forms.MultipleChoiceField(widget=forms.SelectMultiple, choices=User.objects.all(), required=False)
-
-    class Meta:
-        model = Task
-        fields = ("name", "description", "due_date", "schedule_date", "owner", "closed")
-        widgets = {
-            "due_date": DateInput(),
-            "schedule_date": DateInput()
-        }
 
 
 def task_form(request):
@@ -61,6 +43,19 @@ def task_form(request):
             return render(request, "detail.html", context)
     context = {"form": form}
     return render(request, "taskForm.html", context)
+
+
+def user_form(request):
+    form = UserForm()
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            messages.success(request, "Nouveau user : " + new_user.email)
+            context = {"user": new_user}
+            return render(request, "user_task.html", context)
+    context = {"form":form}
+    return render(request, "userForm.html", context)
 
 
 def task_edit(request, param=''):
