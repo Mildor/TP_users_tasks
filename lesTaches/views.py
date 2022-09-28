@@ -1,5 +1,7 @@
 from django.forms import ModelForm, DateInput
 from django.shortcuts import render, redirect
+from django.utils.html import format_html
+
 from lesTaches.forms import TaskForm, UserForm
 from lesTaches.models import Task, User
 from django import forms
@@ -54,7 +56,7 @@ def user_form(request):
             messages.success(request, "Nouveau user : " + new_user.email)
             context = {"user": new_user}
             return render(request, "user_task.html", context)
-    context = {"form":form}
+    context = {"form": form}
     return render(request, "userForm.html", context)
 
 
@@ -64,8 +66,10 @@ def task_edit(request, param=''):
 
         form = TaskForm(request.POST, instance=data)
         if form.is_valid():
-            form.save()
-            return redirect('/lesTaches/')
+            new_task = form.save()
+            messages.success(request, "Modification de la tache : " + new_task.name)
+            context = {"tache": new_task}
+            return render(request, "detail.html", context)
     else:
         form = TaskForm(instance=data)
     return render(request, 'edit_task.html', {'form': form, 'task': data})
@@ -74,4 +78,4 @@ def task_edit(request, param=''):
 def task_delete(request, param=''):
     task = Task.objects.get(id=param)
     task.delete()
-    return redirect('/lesTaches/')
+    return render(request, 'del_task.html', {"deleted_task": task})
