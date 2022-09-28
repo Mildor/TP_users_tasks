@@ -3,7 +3,6 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    path('admin', admin.site.urls),
     path('', views.task_nav, name='crud_task'),
     path('listing/', views.task_listing, name='crud_task'),
     path('users/', views.user_choice, name='user_choice'),
