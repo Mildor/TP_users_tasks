@@ -6,7 +6,7 @@ import datetime
 # Create your models here.
 
 class User(models.Model):
-    username = None
+    username = models.CharField(max_length=100, default=None, null=True, blank=True)
     email = models.EmailField('email address', unique=True)
 
     USERNAME_FIELD = 'email'
@@ -21,8 +21,8 @@ class Task(models.Model):
     description = models.TextField()
     creation_date = models.DateField(auto_now=True)
     closed = models.BooleanField(default=False)
-    due_date = models.DateField(default=datetime.date.today() + datetime.timedelta(days=7))
-    schedule_date = models.DateField(null=True)
+    due_date = models.DateField(null=True)
+    schedule_date = models.DateField(default=datetime.date.today() + datetime.timedelta(days=7))
     owner = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     def __str__(self):
