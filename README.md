@@ -1,5 +1,12 @@
 # TP_users_tasks
-### Tout d'abord créez un environnement virtuel : 
+
+### Clonez le projet sur votre poste :
+- `git clone https://github.com/Mildor/TP_users_tasks.git`
+
+### Placez vous dans la racine du projet :
+- `cd /VotreChemin/TP_users_tasks/`
+
+### Créez un environnement virtuel : 
 - sur linux : `virtualenv -p python3 ~/venv3`
 - sur windows (avec anaconda) : `conda create -n myenv python=3.10 python`
 
@@ -21,20 +28,15 @@
 - `pip install django-crispy-forms`
 > "Requirement already satisfied: django-crispy-forms in path_to_your_package (1.14.0)"
 
+## Vérifiez que vous vous trouvez bien dans la racine du projet
+>/VotreChemin/TP_users_tasks/
 
 ### Installez les modules npm/yarn:
 - `npm/yarn install`
 
-### Déplacez le répertoire node_modules dans le répertoire static
-
 ### Installez la bade de données :
 - `./manage.py sqlmigrate lesTaches 0001`
 - `./manage.py migrate`
-
-### Créez un superuser afin d'accéder au backoffice :
-- `./manage.py createsuperuser`
-- **_Suivez les indications_ (vous pouvez ne pas mettre d'email en laissant la champ vide)**
-
 
 ### Lancez le projet :
 - `./manage.py runserver`
