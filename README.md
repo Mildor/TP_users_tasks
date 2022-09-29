@@ -31,7 +31,7 @@
 ## Vérifiez que vous vous trouvez bien dans la racine du projet
 >/VotreChemin/TP_users_tasks/
 
-### Installez les modules npm/yarn:
+### Installez les packages npm/yarn:
 - `npm/yarn install`
 
 ### Installez la bade de données :
