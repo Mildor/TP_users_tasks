@@ -26,7 +26,7 @@ def user_choice(request):
 def task_listing_by_user(request, param=''):
     user = User.objects.get(id=param)
     objects = Task.objects.all().filter(owner=param)
-    return render(request, template_name='user_task.html', context={'tasks': objects, 'user': user})
+    return render(request, template_name='user_task.html', context={'taches': objects, 'user': user})
 
 
 def task_details(request, param=''):

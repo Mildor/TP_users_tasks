@@ -1,57 +1,9 @@
-html, body{
-  background-color: lightgrey;
-}
-
-/*Gestion tâches*/
-.title{
-    color: lightgrey;
-    margin: auto;
-}
-
-a {
-    color: black;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a:active {
-  text-decoration: none;
-}
-
-.row{
-    border: thick double black;
-    border-radius: 25px;
-    margin: 1%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background-color: white;
-}
-
-.row_entete{
-    margin: 1%;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
 .row_user{
   width: 25%;
   border: 1px solid black;
   padding: 1%;
   border-radius: 25px;
-  margin: auto;
-  margin-top:2%;
+  margin: 2% auto auto;
   text-align: center;
   background-color: white;
   transition: background-color 1s, transform 1s;
@@ -62,12 +14,7 @@ a:active {
   transform: scale(1.5) translate(0%, 10%);
 }
 
-.row:hover{
-    background-color: wheat;
-}
-
-/*Création Tâches*/
-
+/*!*Création Tâches*!*/
 form{
     padding: 1% 5%;
     width: 50%;
@@ -75,20 +22,9 @@ form{
     flex-direction: column;
     align-items: center;
     margin: auto;
-    background-color: wheat;
+    background-color: white;
     border-bottom-right-radius: 15%;
     border-top-left-radius: 15%;
-}
-
-button{
-    transition: 0.3s;
-    margin: 2%;
-}
-
-button:hover{
-    background-color: #212529;
-    color: white;
-    transition: 0.3s;
 }
 
 input{
@@ -152,7 +88,7 @@ textarea{
   text-align: center;
   margin-bottom: 5%;
   margin-top: 15%;
-  background: wheat;
+  background: white;
   border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
   color: white;
   box-shadow: 20px 20px rgba(0,0,0,.15);
@@ -162,4 +98,191 @@ textarea{
 .link_to:hover {
   border-radius: 0% 0% 50% 50% / 0% 0% 5% 5% ;
   box-shadow: 10px 10px rgba(0,0,0,.25);
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 0.88rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: left;
+    background-color: lightgray;
+}
+
+i {
+    font-style: italic;
+}
+
+.container{
+    margin-top:100px;
+}
+
+.card {
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    border-width: 0;
+    transition: all .2s;
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    border-bottom-width: 1px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 0.625rem;
+    height: 3.5rem;
+    background-color: #fff;
+}
+.widget-subheading{
+    color: #858a8e;
+    font-size: 10px;
+}
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.card-header .header-icon {
+    font-size: 1.65rem;
+    margin-right: 0.625rem;
+}
+
+.card-header.card-header-tab .card-header-title {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.btn-actions-pane-right {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.scroll-area-sm {
+    height: 288px;
+    overflow-x: hidden;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.todo-indicator {
+    position: absolute;
+    width: 4px;
+    height: 60%;
+    border-radius: 0.3rem;
+    left: 0.625rem;
+    top: 20%;
+    opacity: .6;
+    transition: opacity .2s;
+}
+
+.bg-warning {
+    background-color: #f7b924 !important;
+}
+
+.widget-content {
+    padding: 1rem;
+    flex-direction: row;
+    align-items: center;
+}
+
+.widget-content .widget-content-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    align-items: center;
+}
+
+.widget-content .widget-content-right.widget-content-actions {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.widget-content .widget-content-right {
+    margin-left: auto;
+}
+
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.btn-outline-success {
+    color: #3ac47d;
+    border-color: #3ac47d;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #3ac47d;
+    border-color: #3ac47d;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #3f6ad8;
+    border-color: #3f6ad8;
+}
+.btn {
+    position: relative;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    outline: none !important;
+}
+
+.card-footer{
+    background-color: #fff;
+}
+a{
+    color: black;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
 }

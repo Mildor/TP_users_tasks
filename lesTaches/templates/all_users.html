@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
     {% endblock %}
     {% block content %}
-    <h1>Choisissez un utilisateurs afin de voir ses tâches</h1>
+    <h1>Choisissez un utilisateur afin de voir ses tâches</h1>
     {% for user in users %}
         <div class="row_user">
             <a href="/lesTaches/user_task/{{user.id}}/" class="col">{{user.email}}</a>
