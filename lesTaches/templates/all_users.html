@@ -10,7 +10,7 @@
     <div class="col-md-8">
       <div class="card-hover-shadow-2x mb-3 card">
         <div class="card-header-tab card-header">
-          <div class="card-header-title font-size-lg text-capitalize font-weight-normal">&nbsp;<h3>Listes des tâches</h3></div>
+          <div class="card-header-title font-size-lg text-capitalize font-weight-normal">&nbsp;<h3>Listes des utilisateurs</h3></div>
         </div>
         <div class="scroll-area-sm">
           <perfect-scrollbar class="ps-show-limits">
@@ -18,7 +18,7 @@
               <div class="ps-content">
                 <ul class=" list-group list-group-flush">
                     {% for user in users %}
-                        <a href="/lesTaches/user_task/{{ user.id }}/ ">
+                        <a href="/lesTaches/listing/{{ user.id }}/ ">
                             <li class="list-group-item">
                             <div class="todo-indicator bg-focus"></div>
                             <div class="widget-content p-0">
@@ -26,7 +26,7 @@
                                 <div class="widget-content-left mr-2">
                                 </div>
                                 <div class="widget-content-left">
-                                  <div class="widget-heading">{{user.email}}</div>
+                                  <div class="widget-heading"> {% if user.username is not None %} <strong>{{user.username}}</strong>  |  {% endif %} <i style="font-size: medium">{{user.email}}</i></div>
                                   <div class="widget-subheading">
                                         <div><div class="badge badge-pill badge-info ml-2">NEW</div>
                                     </div>
@@ -48,7 +48,7 @@
           </perfect-scrollbar>
         </div>
         <div class="d-block text-right card-footer">
-            <a href="/lesTaches/addTask/"><button class="btn btn-primary">Ajouter</button></a>
+            <a href="/lesTaches/addUser/"><button class="btn btn-primary">Ajouter</button></a>
         </div>
       </div>
     </div>

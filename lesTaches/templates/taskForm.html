@@ -7,6 +7,7 @@
         <form action="/lesTaches/addTask/" method="POST">
             {% csrf_token %}
             {{ form | crispy }}
+            {{task.owner}}
             <button type="submit">Sauvegarder</button>
         </form>
     {% endblock %}

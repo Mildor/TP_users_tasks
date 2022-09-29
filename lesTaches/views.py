@@ -13,9 +13,15 @@ def task_nav(request):
     return render(request, template_name='nav_task.html')
 
 
-def task_listing(request):
+def task_listing(request, param=''):
     objects = Task.objects.all().order_by("due_date")
-    return render(request, template_name="liste.html", context={'taches': objects})
+    user = ''
+    if param != '':
+        user = User.objects.get(id=param)
+
+    return render(request, template_name="liste.html", context={'taches': objects, 'user':user})
+
+
 
 
 def user_choice(request):
@@ -23,18 +29,13 @@ def user_choice(request):
     return render(request, template_name='all_users.html', context={'users': objects})
 
 
-def task_listing_by_user(request, param=''):
-    user = User.objects.get(id=param)
-    objects = Task.objects.all().filter(owner=param)
-    return render(request, template_name='user_task.html', context={'taches': objects, 'user': user})
-
 
 def task_details(request, param=''):
     objects = Task.objects.get(id=param)
     return render(request, template_name="detail.html", context={'tache': objects})
 
 
-def task_form(request):
+def task_form(request, param=''):
     form = TaskForm()
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -43,8 +44,11 @@ def task_form(request):
             messages.success(request, "Nouvelle Tâches : " + new_task.name)
             context = {"tache": new_task}
             return render(request, "detail.html", context)
-    context = {"form": form}
-    return render(request, "taskForm.html", context)
+    if param != '':
+        user = User.objects.get(id=param)
+        form = TaskForm(initial={'owner': user})
+
+    return render(request, "taskForm.html", {"form": form})
 
 
 def task_edit(request, param=''):
@@ -88,7 +92,8 @@ def user_edit(request, param=''):
         if form.is_valid():
             new_user = form.save()
             messages.success(request, "Modification du user : " + new_user.email)
-            return render(request, "all_users.html")
+            users = User.objects.all()
+            return render(request, "all_users.html", {'users': users})
     else:
         form = UserForm(instance=data)
     return render(request, 'edit_user.html', {'form': form, 'user': data})
