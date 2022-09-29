@@ -11,5 +11,7 @@ urlpatterns = [
     path('addTask/', views.task_form, name='TaskForm'),
     path('EditTask/<param>/', views.task_edit, name='TaskForm'),
     path('DeleteTask/<param>/', views.task_delete, name='TaskForm'),
+    path('EditUser/<param>/', views.user_edit, name='UserForm'),
+    path('DeleteUser/<param>/', views.user_delete, name='UserForm'),
     path('addUser/', views.user_form, name='UserForm')
 ]

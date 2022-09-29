@@ -1,0 +1,10 @@
+{% extends "baseLayout.html" %}
+{% load static %}
+    {% block title %}Que souhaitez vous faire ?{% endblock %}
+    {% block styles %}
+        {{ block.super }}
+        <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
+    {% endblock %}
+    {% block content %}
+    <h1>Vôtre tâche {{deleted_user.email}} a bien été supprimé !</h1>
+    {% endblock %}

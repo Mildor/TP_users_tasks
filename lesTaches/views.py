@@ -47,19 +47,6 @@ def task_form(request):
     return render(request, "taskForm.html", context)
 
 
-def user_form(request):
-    form = UserForm()
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            messages.success(request, "Nouveau user : " + new_user.email)
-            context = {"user": new_user}
-            return render(request, "user_task.html", context)
-    context = {"form": form}
-    return render(request, "userForm.html", context)
-
-
 def task_edit(request, param=''):
     data = Task.objects.get(id=param)
     if request.method == 'POST':
@@ -79,3 +66,35 @@ def task_delete(request, param=''):
     task = Task.objects.get(id=param)
     task.delete()
     return render(request, 'del_task.html', {"deleted_task": task})
+
+
+def user_form(request):
+    form = UserForm()
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            messages.success(request, "Nouveau user : " + new_user.email)
+            context = {"user": new_user}
+            return render(request, "all_users.html", context)
+    context = {"form": form}
+    return render(request, "userForm.html", context)
+
+
+def user_edit(request, param=''):
+    data = User.objects.get(id=param)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=data)
+        if form.is_valid():
+            new_user = form.save()
+            messages.success(request, "Modification du user : " + new_user.email)
+            return render(request, "all_users.html")
+    else:
+        form = UserForm(instance=data)
+    return render(request, 'edit_user.html', {'form': form, 'user': data})
+
+
+def user_delete(request, param=''):
+    user = User.objects.get(id=param)
+    user.delete()
+    return render(request, 'del_user.html', {"deleted_user": user})
