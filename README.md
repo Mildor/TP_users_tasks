@@ -40,7 +40,3 @@
 
 ### Lancez le projet :
 - `./manage.py runserver`
-
-
-### Pour pouvoir accéder au backoffice ajouter "admin" a l'url de base exemple:
-- mon url de base "127.0.0.1:8000" accéder au backoffice : "127.0.0.1:8000/admin/"
