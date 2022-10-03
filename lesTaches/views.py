@@ -19,15 +19,12 @@ def task_listing(request, param=''):
     if param != '':
         user = User.objects.get(id=param)
 
-    return render(request, template_name="liste.html", context={'taches': objects, 'user':user})
-
-
+    return render(request, template_name="liste.html", context={'taches': objects, 'user': user})
 
 
 def user_choice(request):
     objects = User.objects.all()
     return render(request, template_name='all_users.html', context={'users': objects})
-
 
 
 def task_details(request, param=''):
@@ -54,7 +51,6 @@ def task_form(request, param=''):
 def task_edit(request, param=''):
     data = Task.objects.get(id=param)
     if request.method == 'POST':
-
         form = TaskForm(request.POST, instance=data)
         if form.is_valid():
             new_task = form.save()
