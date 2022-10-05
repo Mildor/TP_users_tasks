@@ -31,7 +31,7 @@ class FunctionalTest(StaticLiveServerTestCase):
     def test_can_show_task_list(self):
         self.browser.get("http://127.0.0.1:8000/lesTaches/")
         self.assertIn("Que souhaitez vous faire ?", self.browser.title)
-        #self.fail()
+        # self.fail()
 
     def test_add_delete_task(self):
         browser = Chrome(executable_path='C:/chrome_driver/chromedriver.exe')
@@ -70,6 +70,26 @@ class FunctionalTest(StaticLiveServerTestCase):
 
         self.assertEqual(True, tache_found)
 
+        browser.find_element_by_css_selector(".btn-secondary").click()
+        time.sleep(1)
+        browser.find_element_by_id("id_name").clear()
+        time.sleep(1)
+        browser.find_element_by_id("id_name").send_keys("TP Django")
+        time.sleep(1)
+
+        browser.find_element_by_id("submit").click()
+        time.sleep(1)
+
+        titre_tache = browser.find_element_by_css_selector(".card-header>h2")
+        tache_found = False
+        elem = None
+
+        if "TP Django" == titre_tache.text:
+            tache_found = True
+            elem = titre_tache
+
+        self.assertEqual(True, tache_found)
+        time.sleep(2)
         browser.find_element_by_id("delete").click()
         time.sleep(10)
 
@@ -83,8 +103,60 @@ class FunctionalTest(StaticLiveServerTestCase):
         self.assertEqual(True, tache_found)
         browser.quit()
 
-    #def test_add_delete_user(self):
+    def test_add_delete_user(self):
+        browser = Chrome(executable_path='C:/chrome_driver/chromedriver.exe')
+        browser.get("http://127.0.0.1:8000/lesTaches/addUser/")
+        time.sleep(1)
+        username = browser.find_element_by_id("id_username")
+        email = browser.find_element_by_id("id_email")
 
+        time.sleep(1)
+        username.send_keys("Test user")
+        time.sleep(1)
+        email.send_keys("test@user.com")
+        time.sleep(1)
+
+        browser.find_element_by_id("submit").click()
+        time.sleep(1)
+
+        nom_user = browser.find_element_by_xpath('//div[@class="card-header-title font-size-lg font-weight-normal"]/h3')
+        name_found = False
+
+        if "Liste de tâche(s) de Test user" == nom_user.text:
+            name_found = True
+
+        self.assertEqual(True, name_found)
+
+        browser.find_element_by_css_selector(".btn-secondary").click()
+        time.sleep(2)
+        browser.find_element_by_id("id_username").clear()
+        time.sleep(1)
+        browser.find_element_by_id("id_username").send_keys("Test clear user")
+        time.sleep(1)
+        browser.find_element_by_id("submit").click()
+        time.sleep(1)
+
+        nom_user = browser.find_element_by_xpath('//div[@class="card-header-title font-size-lg font-weight-normal"]/h3')
+        name_found = False
+
+        if "Liste de tâche(s) de Test clear user" == nom_user.text:
+            name_found = True
+
+        self.assertEqual(True, name_found)
+
+        time.sleep(2)
+        browser.find_element_by_css_selector(".btn-danger").click()
+        time.sleep(5)
+        emails = browser.find_elements_by_xpath('//div[@class="widget-heading"]/i')
+        email_found = True
+
+        for email in emails:
+            if "test@user.com" == email:
+                email_found = False
+
+        self.assertEqual(True, email_found)
+        time.sleep(1)
+        browser.quit()
 
 
 class UserTestCase(TestCase):

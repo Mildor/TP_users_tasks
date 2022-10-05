@@ -7,6 +7,7 @@
         <form action="/lesTaches/EditTask/{{task.id}}/" method="POST">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit">Sauvegarder</button>
+            {{form.deadline_date.value | date:'c'}}
+            <button type="submit" id="submit">Sauvegarder</button>
         </form>
     {% endblock %}

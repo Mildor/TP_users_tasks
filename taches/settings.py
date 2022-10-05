@@ -71,7 +71,6 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, ""),
 ]
 
-
 WSGI_APPLICATION = 'taches.wsgi.application'
 
 # Database
@@ -115,7 +114,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ('%d/%m/%Y', '%Y-%m-%d')
+DATE_INPUT_FORMATS = ('jj/mm/aaaa', '%dd/%mm/%yyyy', '%Y-%m-%d', 'd.m.Y')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

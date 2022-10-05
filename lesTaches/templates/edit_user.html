@@ -7,6 +7,6 @@
         <form action="/lesTaches/EditUser/{{user.id}}/" method="POST">
             {% csrf_token %}
             {{ form | crispy }}
-            <button type="submit">Sauvegarder</button>
+            <button type="submit" id="submit">Sauvegarder</button>
         </form>
     {% endblock %}

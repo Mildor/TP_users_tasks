@@ -3,10 +3,6 @@ from django.forms import ModelForm
 from lesTaches.models import Task, User
 
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
-
-
 class TaskForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
@@ -21,8 +17,8 @@ class TaskForm(ModelForm):
         model = Task
         fields = '__all__'
         widgets = {
-            'due_date': DateInput(),
-            'schedule_date': DateInput(),
+            'due_date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
+            'schedule_date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
         }
 
 

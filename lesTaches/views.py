@@ -93,8 +93,9 @@ def user_edit(request, param=''):
         if form.is_valid():
             new_user = form.save()
             messages.success(request, "Modification du user : " + new_user.email)
-            users = User.objects.all()
-            return render(request, "all_users.html", {'users': users})
+            taches = Task.objects.all().filter(owner=new_user)
+            context = {"user": new_user, "taches": taches}
+            return render(request, "liste.html", context)
     else:
         form = UserForm(instance=data)
     return render(request, 'edit_user.html', {'form': form, 'user': data})
