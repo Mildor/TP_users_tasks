@@ -1,11 +1,11 @@
 from django.forms import ModelForm, DateInput
 from django.shortcuts import render, redirect
 from django.utils.html import format_html
-
 from lesTaches.forms import TaskForm, UserForm
 from lesTaches.models import Task, User
 from django import forms
 from django.contrib import messages
+
 
 
 # Create your views here.

@@ -8,6 +8,6 @@
             {% csrf_token %}
             {{ form | crispy }}
             {{task.owner}}
-            <button type="submit">Sauvegarder</button>
+            <button type="submit" id="submit">Sauvegarder</button>
         </form>
     {% endblock %}
