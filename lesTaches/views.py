@@ -7,7 +7,6 @@ from django import forms
 from django.contrib import messages
 
 
-
 # Create your views here.
 def task_nav(request):
     return render(request, template_name='nav_task.html')
@@ -68,16 +67,20 @@ def task_delete(request, param=''):
     return render(request, 'del_task.html', {"deleted_task": task})
 
 
-def user_form(request):
+def user_form(request, lien=''):
     form = UserForm()
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = form.save()
             messages.success(request, "Nouveau user : " + new_user.email)
-            context = {"user": new_user}
-            return render(request, "all_users.html", context)
-    context = {"form": form}
+            if lien == 'task':
+                taskForm = TaskForm(initial={'owner': new_user})
+                return render(request, "taskForm.html", {'form': taskForm})
+            else:
+                context = {"user": new_user}
+                return render(request, "all_users.html", context)
+    context = {"form": form, "get": lien}
     return render(request, "userForm.html", context)
 
 

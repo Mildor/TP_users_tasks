@@ -13,6 +13,7 @@ urlpatterns = [
     path('EditTask/<param>/', views.task_edit, name='TaskForm-edit'),
     path('DeleteTask/<param>/', views.task_delete, name='TaskForm-delete'),
     path('addUser/', views.user_form, name='UserForm'),
+    path('addUser/<lien>/', views.user_form, name='UserForm'),
     path('EditUser/<param>/', views.user_edit, name='UserForm-edit'),
-    path('DeleteUser/<param>/', views.user_delete, name='UserForm-delete')
+    path('DeleteUser/<param>/', views.user_delete, name='UserForm-delete'),
 ]

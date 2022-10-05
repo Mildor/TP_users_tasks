@@ -4,7 +4,11 @@
     {% block title %}Nouvelle Tâche{% endblock %}
     {% block nav %}Création d'une tâche{% endblock %}
     {% block content %}
-        <form action="/lesTaches/addUser/" method="POST">
+        {% if get != '' %}
+            <form action="/lesTaches/addUser/{{get}}/" method="POST">
+        {% else %}
+            <form action="/lesTaches/addUser/" method="POST">
+        {% endif %}
             {% csrf_token %}
             {{ form | crispy }}
             <button type="submit">Sauvegarder</button>

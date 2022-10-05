@@ -6,5 +6,11 @@
         <link rel="stylesheet" href="{% static 'node_modules/@fortawesome/fontawesome-free/css/all.css' %}">
     {% endblock %}
     {% block content %}
-    <h1>Vôtre tâche {{deleted_user.email}} a bien été supprimé !</h1>
+        <h1>Vôtre tâche {{deleted_user.email}} a bien été supprimé ! <br> Vous serez redirigé dans <i id="secondes">3s</i></h1>
+        <script>
+            const secondes = document.getElementById('secondes');
+            setTimeout(() => {secondes.innerHTML = '2s';}, 1000)
+            setTimeout(() => {secondes.innerHTML = '1s';}, 2000)
+            setTimeout(() => {document.location.href="/lesTaches/users/";}, 4000)
+        </script>
     {% endblock %}

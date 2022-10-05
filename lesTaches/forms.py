@@ -1,35 +1,39 @@
-from django.forms import ModelForm, DateInput
-from lesTaches.models import Task, User
 from django import forms
+from django.forms import ModelForm
+from lesTaches.models import Task, User
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 
 class TaskForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(TaskForm, self).__init__(*args, **kwargs)
         self.fields["name"].label = "Nom"
-        self.fields["description"].label = "description"
-        self.fields["due_date"].label = "due_date"
-        self.fields["schedule_date"].label = "schedule_date"
-        self.fields["closed"].label = "closed"
-        owner = forms.MultipleChoiceField(widget=forms.SelectMultiple, choices=User.objects.all(), required=False)
+        self.fields["description"].label = "Description"
+        self.fields["due_date"].label = "Dernière date de rendu"
+        self.fields["schedule_date"].label = "Date de rendu"
+        self.fields["closed"].label = "Fermé"
+        self.fields["owner"].label = "Utilisateur"
 
     class Meta:
         model = Task
-        fields = ("name", "description", "due_date", "schedule_date", "owner", "closed")
+        fields = '__all__'
         widgets = {
-            "due_date": DateInput(),
-            "schedule_date": DateInput()
+            'due_date': DateInput(),
+            'schedule_date': DateInput(),
         }
 
 
 class UserForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
-        self.fields['username'].label = "Username"
+        self.fields['username'].label = "Nom d'utilisateur"
         self.fields['username'].required = False
-        self.fields['email'].label = "Email"
+        self.fields['email'].label = "Adresse email"
         self.fields['email'].required = True
 
     class Meta:
         model = User
-        fields = ("username", "email")
+        fields = '__all__'

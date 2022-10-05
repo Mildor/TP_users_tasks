@@ -4,10 +4,15 @@
     {% block title %}Nouvelle Tâche{% endblock %}
     {% block nav %}Création d'une tâche{% endblock %}
     {% block content %}
+
         <form action="/lesTaches/addTask/" method="POST">
             {% csrf_token %}
             {{ form | crispy }}
             {{task.owner}}
             <button type="submit" id="submit">Sauvegarder</button>
+            <div class="d-flex justify-content-center p-2">
+                <a href="/lesTaches/addUser/task/"><button type="button" class="btn btn-dark">Ajouter un nouvel utilisateurs</button></a>
+            </div>
         </form>
+
     {% endblock %}
