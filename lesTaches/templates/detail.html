@@ -8,7 +8,7 @@
     {% block content %}
     <div class="card">
       <div class="card-header">
-        <h2>{{ tache.name }}</h2>
+        <h2 style="padding-right: 2%">{{ tache.name }}</h2>{% if tache.closed %}<i class="fas fa-lock"></i>{% else %}<i class="fas fa-lock-open"></i>{% endif%}
       </div>
       <div class="card-body">
 
@@ -21,10 +21,9 @@
           {% else %}
             <h4>Attribué à : {{ tache.owner }}</h4>
           {% endif %}
-          {% if tache.closed %}
-            <i class="fas fa-lock"></i>
-          {% else %}
-            <i class="fas fa-lock-open"></i>
-          {% endif%}
+
+          <br>
+          <a class="col" href="/lesTaches/EditTask/{{tache.id}}/"><button type="button" class="btn btn-secondary">Modifier</button></a>
+          <a href="/lesTaches/DeleteTask/{{tache.id}}/" id="delete"><button class="border-0 btn-transition btn btn-outline-danger"><i class="fa fa-trash"></i></button></a>
       </div>
     {% endblock %}

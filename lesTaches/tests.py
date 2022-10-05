@@ -1,10 +1,89 @@
+import re
+import time
+
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from django.test import TestCase
 from django.urls.exceptions import NoReverseMatch
 from lesTaches.models import Task, User
+from django.urls import resolve
+from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
+from lesTaches.views import task_nav, task_listing, user_choice, task_details, task_form, task_edit, task_delete, \
+    user_form, user_edit, user_delete
 
 
-# browser = webdriver.Chrome(service=ChromeService("C:/chromedriver/chromedriver.exe"))
+class FunctionalTest(StaticLiveServerTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.options = Options()
+        cls.options.add_argument("--headless")
+        cls.browser = Chrome(executable_path='C:/chrome_driver/chromedriver.exe', options=cls.options)
+        cls.browser.implicitly_wait(3)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.quit()
+        super().tearDownClass()
+
+    def test_can_show_task_list(self):
+        self.browser.get("http://127.0.0.1:8000/lesTaches/")
+        self.assertIn("Que souhaitez vous faire ?", self.browser.title)
+        self.fail()
+
+    def test_add_delete_task(self):
+        browser = Chrome(executable_path='C:/chrome_driver/chromedriver.exe')
+        browser.get("http://127.0.0.1:8000/lesTaches/addTask/")
+        time.sleep(1)
+        name = browser.find_element_by_id("id_name")
+        desc = browser.find_element_by_id("id_description")
+        closed = browser.find_element_by_id("id_closed")
+        due_date = browser.find_element_by_id("id_due_date")
+        schedule_date = browser.find_element_by_id("id_schedule_date")
+        owner = browser.find_element_by_xpath("//select[@name='owner']/option[@value='1']")
+
+        name.send_keys("Quizz a rendre")
+        time.sleep(1)
+        desc.send_keys("c'est un test pour voir si ajouter avec un test ca fonctionne")
+        time.sleep(1)
+        closed.click()
+        time.sleep(1)
+        due_date.send_keys("05-10-2022")
+        time.sleep(1)
+        schedule_date.send_keys("05-11-2022")
+        time.sleep(1)
+        owner.click()
+        time.sleep(1)
+
+        browser.find_element_by_id("submit").click()
+        time.sleep(1)
+
+        titre_tache = browser.find_element_by_css_selector(".card-header>h2")
+        tache_found = False
+        elem = None
+
+        if "Quizz a rendre" == titre_tache.text:
+            tache_found = True
+            elem = titre_tache
+
+        self.assertEqual(True, tache_found)
+
+        browser.find_element_by_id("delete").click()
+        time.sleep(10)
+
+        titles = browser.find_elements_by_class_name("widget-heading")
+        tache_found = True
+
+        for title in titles:
+            if 'Quizz a rendre' == title.text:
+                tache_found = False
+
+        self.assertEqual(True, tache_found)
+        time.sleep(5)
+        browser.quit()
+
 
 class UserTestCase(TestCase):
     def setUp(self):
@@ -28,6 +107,7 @@ class UserTestCase(TestCase):
         assert responsedeu.status_code == 200
         user.delete()
         userdeu.delete()
+
 
 class TacheTestCase(TestCase):
     def setUp(self):
