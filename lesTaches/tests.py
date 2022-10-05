@@ -31,7 +31,7 @@ class FunctionalTest(StaticLiveServerTestCase):
     def test_can_show_task_list(self):
         self.browser.get("http://127.0.0.1:8000/lesTaches/")
         self.assertIn("Que souhaitez vous faire ?", self.browser.title)
-        self.fail()
+        #self.fail()
 
     def test_add_delete_task(self):
         browser = Chrome(executable_path='C:/chrome_driver/chromedriver.exe')
@@ -81,8 +81,10 @@ class FunctionalTest(StaticLiveServerTestCase):
                 tache_found = False
 
         self.assertEqual(True, tache_found)
-        time.sleep(5)
         browser.quit()
+
+    #def test_add_delete_user(self):
+
 
 
 class UserTestCase(TestCase):

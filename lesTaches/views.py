@@ -13,10 +13,11 @@ def task_nav(request):
 
 
 def task_listing(request, param=''):
-    objects = Task.objects.all().order_by("due_date")
+    objects = Task.objects.all().order_by("name")
     user = ''
     if param != '':
         user = User.objects.get(id=param)
+        objects = Task.objects.all().filter(owner=user)
 
     return render(request, template_name="liste.html", context={'taches': objects, 'user': user})
 
@@ -78,8 +79,9 @@ def user_form(request, lien=''):
                 taskForm = TaskForm(initial={'owner': new_user})
                 return render(request, "taskForm.html", {'form': taskForm})
             else:
-                context = {"user": new_user}
-                return render(request, "all_users.html", context)
+                taches = Task.objects.all().filter(owner=new_user)
+                context = {"user": new_user, "taches": taches}
+                return render(request, "liste.html", context)
     context = {"form": form, "get": lien}
     return render(request, "userForm.html", context)
 
