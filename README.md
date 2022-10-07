@@ -28,6 +28,13 @@
 - `pip install django-crispy-forms`
 > "Requirement already satisfied: django-crispy-forms in path_to_your_package (1.14.0)"
 
+### Installez selenium
+- `pip install selenium`
+
+### Vérifier l'installation de selenium:
+- `pip install selenium`
+> "Requirement already satisfied"
+
 ## Vérifiez que vous vous trouvez bien dans la racine du projet
 >/VotreChemin/TP_users_tasks/
 
